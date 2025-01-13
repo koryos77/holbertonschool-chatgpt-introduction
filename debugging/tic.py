@@ -78,8 +78,14 @@ def get_valid_input(player, board):
             if board[row][col] != " ":
                 print("That spot is already taken! Please choose another one.")
                 continue
-
-            return row, col
+            
+            # Confirm the action before proceeding
+            confirm = input(f"Player {player}, you chose row {row} and column {col}. Do you want to place your mark here? (y/n): ").lower()
+            if confirm == 'y':
+                return row, col
+            else:
+                print("Action cancelled, choose another spot.")
+                continue
         except ValueError:
             print("Invalid input! Please enter numeric values between 0 and 2.")
         except EOFError:
